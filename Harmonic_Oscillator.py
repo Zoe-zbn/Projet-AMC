@@ -21,8 +21,21 @@ E=E0
 for t in np.arange(0, T, dt):
     # Diffusion Brownien suivant une loi gaussien 
     for i in range(len(s)):
+        '''
+        #Enregistrement de l'ancienne postion pour le test ligne 34-37
+        x_test = x[i]
+        '''
         # Diffusion pour chaque particules
-        x[i] += np.random.normal(0, np.sqrt(2*Dq*dt))
+        x[i] += np.random.normal(0, np.sqrt(2*Dq*dt)
+                                 
+        '''
+        #Test de la nouvelle probabilitée    
+        # Acceptation ou rejet 
+        if np.random.uniform(0.0, 1.0) < np.exp(-(V(x[i]) - V(x_test)) / hbar)  :
+            x[i] = x[i]
+        else:
+            x[i]=x_test
+        '''
         
         # Test Monte-Carlo : life-death rate cf raport 
         if s[i] == 1.0 : # on regarde uniquement les particules en vie (s=1)
